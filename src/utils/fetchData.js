@@ -1,10 +1,11 @@
 export const fetchData = async (path) => {
-    const user = "aemuser";
-    const pass = "aemuser";
-    const url = `${getAuthorHost()}/${path.split(":/")[1]}.infinity.json`;
-    const data = await fetch(url, {headers: {
-        "Authorization": `Basic ${btoa(`${user}:${pass}`)}`
-    },credentials: "include"});
+    // const user = "aemuser";
+    // const pass = "aemuser";
+    // const auth = Buffer
+    // .from(`${user}:${pass}`)
+    // .toString("base64");
+    // const url = `${getAuthorHost()}/${path.split(":/")[1]}.infinity.json`;
+    const data = await fetch(`/api/aem?path=${encodeURIComponent(path)}`);
     const json = await data.json();
     return json;
 };
