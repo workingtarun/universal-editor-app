@@ -2,9 +2,7 @@ export const fetchData = async (path) => {
     const user = "aemuser";
     const pass = "aemuser";
     const url = `${getAuthorHost()}/${path.split(":/")[1]}.infinity.json`;
-    const data = await fetch(url, {headers: {
-        "Authorization": `Basic ${btoa(`${user}:${pass}`)}`
-    },credentials: "include"});
+    const data = await fetch(url, {headers: {"X-Aem-Affinity-Type": "api"}, credentials: "include"})
     const json = await data.json();
     return json;
 };
@@ -14,7 +12,7 @@ export const getAuthorHost = () => {
     if (searchParams.has("authorHost")) {
         return searchParams.get("authorHost");
     } else {
-        return "https://author-p169008-e1803621.adobeaemcloud.com";
+        return "https://author-p169008-e1840348.adobeaemcloud.com";
     }
 }
 
